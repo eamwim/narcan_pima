@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Narcan at PCC: Empower Students, Save Lives</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        :root {
+            --primary-color: #003366; /* Deep Blue */
+            --accent-color: #cc0000;  /* Emergency Red */
+            --bg-color: #f4f7f6;
+            --text-dark: #333333;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: var(--bg-color);
+            overflow-x: hidden; /* Added to prevent horizontal scroll during animation */
+        }
+
+        /* --- BACKGROUND HEADER --- */
+        header {
+            position: relative;
+            overflow: hidden; 
+            padding: 6rem 2rem 8rem 2rem; 
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            /* 24-second animation that loops infinitely */
+            animation: campusCycle 24s infinite;
+        }
+
+        /* The animation instructions to cycle 3 images and zoom */
+        @keyframes campusCycle {
+            /* --- PICTURE 1 --- */
+            0% {
+                background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('downtown.jpg');
+                transform: scale(1) translate(0, 0);
+            }
+            30% {
+                background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('downtown.jpg');
+                transform: scale(1.08) translate(-1%, -1%);
+            }
+            
+            /* --- PICTURE 2 --- */
+            33.33% {
+                background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('west.jpg');
+                transform: scale(1) translate(0, 0);
+            }
+            63.33% {
+                background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('west.jpg');
+                transform: scale(1.08) translate(-1%, -1%);
+            }
+            
+            /* --- PICTURE 3 --- */
+            66.66% {
+                background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('west2.jpg');
+                transform: scale(1) translate(0, 0);
+            }
+            96.66% {
+                background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('west2.jpg');
+                transform: scale(1.08) translate(-1%, -1%);
+            }
+            
+            /* --- RESETS TO PICTURE 1 TO LOOP --- */
+            100% {
+                background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('downtown.jpg');
+                transform: scale(1) translate(0, 0);
+            }
+        }
+
+        header h1, header p {
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            margin-top: 10px;
+            font-weight: 300;
+            color: #e0e0e0;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- NEW: SCROLL REVEAL CSS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered delays for the stats cards so they pop up one by one */
+        .stats-grid .stat-card:nth-child(1) { transition-delay: 0.1s; }
+        .stats-grid .stat-card:nth-child(2) { transition-delay: 0.2s; }
+        .stats-grid .stat-card:nth-child(3) { transition-delay: 0.3s; }
+        .stats-grid .stat-card:nth-child(4) { transition-delay: 0.4s; }
+
+
+        /* --- THE STATS GRID --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: -5rem; 
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stat-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px); /* Keep the hover effect separate from reveal */
+        }
+
+        .stat-image {
+            width: 100%;
+            max-width: 120px; 
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+            line-height: 1;
+        }
+
+        .stat-desc {
+            font-size: 0.95rem;
+            color: #555;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        /* Essay Content Sections */
+        .content-section {
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--text-dark);
+            margin-top: 2rem;
+        }
+
+        ul, ol {
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline li {
+            margin-bottom: 1rem;
+        }
+
+        .highlight-box {
+            background-color: #ffe6e6;
+            border-left: 4px solid var(--accent-color);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .works-cited {
+            font-size: 0.85rem;
+            text-align: left;
+            max-width: 800px;
+            margin: 2rem auto 0 auto;
+        }
+
+        .works-cited h4 {
+            color: #fff;
+            border-bottom: 1px solid #555;
+            padding-bottom: 0.5rem;
+        }
+
+        .works-cited p {
+            text-indent: -2em;
+            padding-left: 2em;
+            margin: 0.5em 0;
+            word-wrap: break-word;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            header { padding: 3rem 1rem 6rem 1rem; }
+            .stats-grid { margin-top: -3rem; }
+            .content-section { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="reveal active"> <h1>Narcan at PCC</h1>
+        <p>Empowering Students, Saving Lives, and Addressing the Opioid Epidemic</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="stats-grid">
+            <div class="stat-card reveal">
+                <img src="money-burn.gif" alt="Cartoon representing financial cost" class="stat-image">
+                <div class="stat-number">$2.2B</div>
+                <p class="stat-desc">Annual cost of opioid hospitalizations in Arizona.</p>
+            </div>
+            
+            <div class="stat-card reveal">
+                <img src="poison.gif" alt="Cartoon representing synthetic opioids" class="stat-image">
+                <div class="stat-number">94.5%</div>
+                <p class="stat-desc">Of overdose deaths caused by synthetic opioids (fentanyl).</p>
+            </div>
+
+            <div class="stat-card reveal">
+                <img src="exclude.gif" alt="Cartoon representing bystander hesitation" class="stat-image">
+                <div class="stat-number">43%</div>
+                <p class="stat-desc">Of overdose fatalities occur with a bystander present.</p>
+            </div>
+
+            <div class="stat-card reveal">
+                <img src="narcan.gif" alt="Cartoon representing response time" class="stat-image">
+                <div class="stat-number">&lt 3 Min</div>
+                <p class="stat-desc">Target response time achieved by placing Narcan Dispensers nearby.</p>
+            </div>
+        </div>
+
+        <div class="content-section reveal">
+            <h2>The Initiative</h2>
+            <p>I am recommending the installation of Narcan (Naloxone) throughout all of Pima Community Colleges' facilities so that this life-saving drug is readily available. Narcan will be placed both in existing emergency cabinets and in stand-alone devices.</p>
+            <p>As Tucson continues to battle its deadly and ever-changing opioid epidemic, which has been claiming lives in Tucson for over 30 years, residents are seeing the devastating effects of addiction firsthand. Therefore, it is crucial for Tucson to move away from simply responding to emergencies related to the opioid epidemic and begin using harm-reduction strategies proactively.</p>
+            <p>Making Narcan easily accessible allows students to become empowered to respond to the growing number of people suffering from opioid overdoses. Students, faculty, staff, and visitors will be able to quickly access Narcan without having to search for it, allowing us to develop a rapid, efficient way to help reduce the number of overdoses occurring on college campuses.</p>
+        </div>
+
+        <div class="content-section reveal">
+            <h2>Scale and History of Tucson’s Opioid Epidemic</h2>
+            <p>The financial burden of the ongoing crisis is substantial. A recent 2025 Technical Report produced by the Arizona Department of Health Services (ADHS) estimated that the annual cost of opioid-related hospitalizations costs the State of Arizona economy about $2.2 billion per year. Pima County has some of the highest rates of opioid-related hospitalizations in the state.</p>
+            
+            <h3>The Four Waves of the Epidemic</h3>
+            <ol class="timeline">
+                <li><strong>Late 1990s – 2010:</strong> Prescription medications were aggressively marketed. Many doctors began treating pain as a "vital sign," creating a large population of chemically-dependent residents in Tucson.</li>
+                <li><strong>2010 – 2016:</strong> Increased scrutiny on "pill mills" caused physicians to reduce prescriptions, shifting demand towards black-tar heroin. Tucson became a major distribution center, resulting in high casualty counts.</li>
+                <li><strong>2016 – 2024:</strong> Fentanyl displaced heroin due to lower production and smuggling costs. Local health officials declared a Public Health Emergency.</li>
+                <li><strong>2025 – 2026:</strong> The streets are saturated with Carfentanil, a synthetic opioid thousands of times stronger than fentanyl. Strategies moved from "law enforcement-first" to aggressive harm-reduction.</li>
+            </ol>
+        </div>
+
+        <div class="content-section reveal">
+            <h2>Understanding Vulnerable Populations</h2>
+            <p>While there are those who pursue opioids for a high, it is rare that it is solely for that reason. More typically, opioids provide a protective mechanism for the physical discomfort experienced when sleeping on the ground, or serve as a form of self-medication for street-violence-induced trauma.</p>
+            
+            <div class="highlight-box">
+                <h3>Bystander Hesitation: A Barrier to Overcoming the Crisis</h3>
+                <p>Deployment strategy is just as important as the medication. Unfortunately, bystander-hesitancy is a major barrier. Typically, bystanders are hesitant due to concerns of medical complications or potential civil/criminal consequences.</p>
+                <p>However, the CDC notes that Narcan is completely non-threatening to individuals not experiencing an overdose. Furthermore, the Arizona Department of Education strongly supports empowering students to intervene, citing ARS Section 15-341 and ARS section 36-2267, ensuring bystanders are protected under the <strong>"Good Samaritan" law</strong>. This reflects core healthcare ethics: patient autonomy and allowing patients to protect their communities.</p>
+            </div>
+        </div>
+
+        <div class="content-section reveal">
+            <h2>Implementation Strategy</h2>
+            <p>While giving each student a kit may seem like a good solution, it would result in wasted/unused kits. Implementing Narcan through targeted public-access infrastructure is what PCC needs.</p>
+            
+            <h3>Phase 1: AED Blueprints</h3>
+            <p>One of the most immediate and cost-efficient ways PCC can achieve this is by adopting the “proof-of-concept” model utilized by the University of Arizona Health Sciences. By installing Narcan kits inside Automated External Defibrillators (AEDs), PCC eliminates immediate costs for new locations. These require no additional training beyond operating an AED and mirror recommendations to maximize response times to less than three minutes.</p>
+
+            <h3>Phase 2: Stand-Alone Dispensers</h3>
+            <p>With a safety net of on-campus emergencies provided by AED placement, PCC should deploy stand-alone Narcan dispensers. This bridges campus response and at-home prevention. When we allow students to proactively choose to take medication home (similar to the 2026 STOP-IT Campaign models), we empower them to counteract an overdose in personal environments where it is most likely to happen.</p>
+        </div>
+
+    </div>
+
+    <footer class="reveal">
+        <p><strong>Prepared by:</strong> Vincent Duong</p>
+        <p>Pima Community College | HON 101: Honors Colloquium | Instructor: Kyley Segers | April 25, 2026</p>
+        
+        <div class="works-cited">
+            <h4>Works Cited</h4>
+            <p>American Institute of Health Care Professionals. "Understanding Health Care Ethics: The Principle of Autonomy." American Institute of Health Care Professionals, 7 Oct. 2024, aihcp.net/2024/10/07/understanding-health-care-ethics-the-principle-of-autonomy/.</p>
+            <p>Arizona Department of Education. School Fentanyl and Opioid Response Toolkit. Jan. 2025, www.azed.gov/sites/default/files/2025/07/STOP-IT%20TOOLKIT%201-2025.pdf.</p>
+            <p>Arizona Department of Health Services. Opioid Overdoses Surveillance Report, Arizona, 2023. Apr. 2025, www.azdhs.gov/opioid/documents/opioid-report-2023.pdf.</p>
+            <p>Centers for Disease Control and Prevention. "Lifesaving Naloxone | Stop Overdose." CDC, 2025, www.cdc.gov.</p>
+            <p>University of Arizona Health Sciences. "Narcan Now Available in Campus AED Cabinets." University of Arizona Health Sciences, 2024, healthsciences.arizona.edu.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active'); 
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15 
+            });
+
+            reveals.forEach(reveal => {
+                revealObserver.observe(reveal);
+            });
+        });
+    </script>
+</body>
+</html>
