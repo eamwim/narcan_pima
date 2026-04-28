@@ -1,11 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Narcan at PCC: Empower Students, Save Lives</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="favicon3.png">
     <style>
+        /* --- SPEECH BUBBLE CSS --- */
+        .profile-container {
+            position: relative;
+            margin: 0 auto;
+            max-width: 250px; /* Keeps the bubble close to the picture */
+        }
+
+        .profile-pic {
+            border-radius: 50%;
+            width: 100%;
+            display: block;
+            border: 4px solid var(--primary-color);
+        }
+
+        .speech-bubble {
+            position: absolute;
+            top: -20px;     /* Moves it up above your head */
+            right: -40px;   /* Moves it out to the right */
+            background-color: var(--accent-color); /* Uses the emergency red color */
+            color: white;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            z-index: 10;
+            /* Optional: makes it bob up and down slightly */
+            animation: floatBubble 3s ease-in-out infinite; 
+        }
+
+        /* The little triangle tail pointing to you */
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px; /* Pushes it below the bubble */
+            left: 25px;    /* Positions it along the bottom edge */
+            border-width: 10px 15px 0 0;
+            border-style: solid;
+            border-color: var(--accent-color) transparent transparent transparent;
+        }
+
+        /* The gentle floating animation */
+        @keyframes floatBubble {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
         :root {
             --primary-color: #003366; /* Deep Blue */
             --accent-color: #cc0000;  /* Emergency Red */
@@ -33,6 +81,7 @@
             color: white;
             z-index: 1;
         }
+        
 
         header::before {
             content: "";
@@ -140,6 +189,7 @@
             margin-bottom: 4rem;
             position: relative;
             z-index: 10;
+            scroll-margin-top: 100px;
         }
 
         .stat-card {
@@ -255,8 +305,44 @@
             .stats-grid { margin-top: -3rem; }
             .content-section { padding: 2rem 1.5rem; }
         }
+        /* --- NEW: SMOOTH SCROLLING --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* --- NEW: STICKY NAVIGATION BAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 51, 102, 0.95); /* Deep blue, slightly see-through */
+            padding: 1rem 0;
+            text-align: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
     </style>
 </head>
+        <nav>
+            <a href="#stats">The Facts</a>
+            <a href="#proposal">The Proposal</a>
+            <a href="#implementation">Implementation</a>
+        </nav>
 <body>
 
     <header class="reveal active"> <h1>Narcan at PCC</h1>
@@ -265,7 +351,7 @@
 
     <div class="container">
         
-        <div class="stats-grid">
+        <div class="stats-grid" id="stats">
             <div class="stat-card reveal">
                 <img src="money-burn.gif" alt="Cartoon representing financial cost" class="stat-image">
                 <div class="stat-number">$2.2B</div>
@@ -311,7 +397,7 @@
             </ol>
         </div>
 
-        <div class="content-section reveal">
+        <div class="content-section reveal" id="proposal">
             <h2>Understanding Vulnerable Populations</h2>
             <p>While there are those who pursue opioids for a high, it is rare that it is solely for that reason. More typically, opioids provide a protective mechanism for the physical discomfort experienced when sleeping on the ground, or serve as a form of self-medication for street-violence-induced trauma.</p>
             
@@ -322,7 +408,7 @@
             </div>
         </div>
 
-        <div class="content-section reveal">
+        <div class="content-section reveal" id="implementation">
             <h2>Implementation Strategy</h2>
             <p>While giving each student a kit may seem like a good solution, it would result in wasted/unused kits. Implementing Narcan through targeted public-access infrastructure is what PCC needs.</p>
             
@@ -334,6 +420,19 @@
         </div>
 
     </div>
+    </div>
+
+        <div class="content-section reveal">
+            <h2>About the Author</h2>
+            <div class="text-image-grid">
+                <div>
+                    <p>Hello! My name is Vincent Duong. I am a student at Pima Community College and a proud member of the Phi Theta Kappa international academic honor society. My academic coursework, having taken a plethora of health classes, has heavily fueled my passion for public health, ethics, and community safety.</p>
+                    <p>Being born and raised here, I care deeply about proactive harm-reduction strategies. I built this proposal and website to advocate for realistic, life-saving solutions that empower students and protect our campuses.</p>
+                </div>
+                <img src="vincent_profile.png" alt="Vincent Duong" class="content-image" style="border-radius: 50%; max-width: 250px; margin: 0 auto; display: block; border: 4px solid var(--primary-color);">
+            </div>
+        </div>
+
 
     <footer class="reveal">
         <p><strong>Prepared by:</strong> Vincent Duong</p>
@@ -370,5 +469,6 @@
             });
         });
     </script>
+    
 </body>
 </html>
