@@ -26,8 +26,8 @@
             top: -20px
             ;     /* Moves it up above your head */
             right: -40px;   /* Moves it out to the right */
-            background-color: var(--accent-color); /* Uses the emergency red color */
-            color: white;
+            background-color: var(white); /* Uses the emergency red color */
+            color: var(--primary-color);
             padding: 10px 18px;
             border-radius: 20px;
             font-weight: bold;
@@ -46,7 +46,7 @@
             left: 25px;    /* Positions it along the bottom edge */
             border-width: 10px 15px 0 0;
             border-style: solid;
-            border-color: var(--accent-color) transparent transparent transparent;
+            border-color: white transparent transparent transparent;
         }
 
         /* The gentle floating animation */
@@ -100,39 +100,56 @@
 
         /* The animation instructions to cycle 3 images and zoom */
         @keyframes campusCycle {
-            /* --- PICTURE 1 --- */
+            /* --- PICTURE 1 (Downtown) --- */
             0% {
                 background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('downtown.jpg');
+                background-size: cover;
+                /* Focuses on the center horizontally, and the top vertically */
+                background-position: center top; 
                 transform: scale(1) translate(0, 0);
             }
             30% {
                 background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('downtown.jpg');
+                background-size: cover;
+                background-position: center top; 
                 transform: scale(1.08) translate(-1%, -1%);
             }
             
-            /* --- PICTURE 2 --- */
+            /* --- PICTURE 2 (West) --- */
             33.33% {
                 background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('west.jpg');
+                background-size: cover;
+                /* Focuses perfectly in the middle */
+                background-position: center top; 
                 transform: scale(1) translate(0, 0);
             }
             63.33% {
                 background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('west.jpg');
+                background-size: cover;
+                background-position: center bottom; 
                 transform: scale(1.08) translate(-1%, -1%);
             }
             
-            /* --- PICTURE 3 --- */
+            /* --- PICTURE 3 (West 2) --- */
             66.66% {
                 background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('west2.jpg');
+                background-size: cover;
+                /* You can use percentages! 20% from the left, 80% from the top */
+                background-position: center top; 
                 transform: scale(1) translate(0, 0);
             }
             96.66% {
                 background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('west2.jpg');
+                background-size: cover;
+                background-position: center bottom; 
                 transform: scale(1.08) translate(-1%, -1%);
             }
             
             /* --- RESETS TO PICTURE 1 TO LOOP --- */
             100% {
                 background-image: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), url('downtown.jpg');
+                background-size: cover;
+                background-position: center top; 
                 transform: scale(1) translate(0, 0);
             }
         }
