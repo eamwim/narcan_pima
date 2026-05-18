@@ -466,7 +466,8 @@
                 });
             }, {
                 root: null,
-                threshold: 0.15 
+                threshold: 0.02, /* Fixed for mobile height constraints */
+                rootMargin: "0px 0px -50px 0px"
             });
 
             reveals.forEach(reveal => {
