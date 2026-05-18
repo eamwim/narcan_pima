@@ -70,7 +70,11 @@
             --card-bg: #ffffff;
         }
 
-        html, body {
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.8; 
             margin: 0;
@@ -78,7 +82,8 @@
             color: var(--text-dark);
             background-color: var(--bg-color);
             overflow-x: hidden; 
-            scroll-behavior: smooth;
+            width: 100%;
+            position: relative;
         }
 
         /* --- PARALLAX BACKGROUND HEADER --- */
